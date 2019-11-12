@@ -14,8 +14,13 @@ namespace GhostManager_HaleyPhillips
 
     public class GhostManager : GameComponent, IGhostManager
     {
-        List<Ghost> ghosts; 
-        public List<Ghost> Ghosts { get; set; }
+        private List<Ghost> ghosts; 
+        public List<Ghost> Ghosts
+        {
+            get => ghosts;
+            set => ghosts = value;
+        }
+
         List<Ghost> ghostsToRemove { get; set; }  //remove these ghosts when disabled
         public string GhostTexture { get; set; }
 
@@ -60,7 +65,7 @@ namespace GhostManager_HaleyPhillips
         {
             ghostsToRemove.Clear(); //clear old ghosts to be removed
 
-            foreach (Ghost g in Ghosts)
+            foreach (Ghost g in ghosts)
             {
                 if (g.Enabled)
                 {
@@ -83,7 +88,7 @@ namespace GhostManager_HaleyPhillips
 
         public void Draw(SpriteBatch sb)
         {
-            foreach (var g in Ghosts) //draw each ghost
+            foreach (var g in ghosts) //draw each ghost
             {
                  g.Draw(sb);
             }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGameLibrary.Util;
 
 namespace GhostManager_HaleyPhillips
 {
@@ -12,10 +13,23 @@ namespace GhostManager_HaleyPhillips
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        FPS fps;
+        GameConsole console;
+        MouseSpawnGhost mouseSpawn;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            console = new GameConsole(this);
+            Components.Add(console);
+
+            fps = new FPS(this);
+            Components.Add(fps);
+
+            mouseSpawn = new MouseSpawnGhost(this);
+            Components.Add(mouseSpawn);
         }
 
         protected override void Initialize()
@@ -44,6 +58,7 @@ namespace GhostManager_HaleyPhillips
                 Exit();
 
             // TODO: Add your update logic here
+            //console.Log("mouseSpawnCount", mouseSpawn.Ghosts.Count.ToString());
 
             base.Update(gameTime);
         }
@@ -52,7 +67,9 @@ namespace GhostManager_HaleyPhillips
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            mouseSpawn.Draw(spriteBatch);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

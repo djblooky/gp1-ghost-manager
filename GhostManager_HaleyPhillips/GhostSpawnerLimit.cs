@@ -20,6 +20,7 @@ namespace GhostManager_HaleyPhillips
         public GhostSpawnerLimit(Game game) : base(game) {
 
             MaxGhosts = 5;
+            limitGhostRate = 10;
         }
 
         public override Ghost spawnGhost(Ghost ghost)
@@ -32,7 +33,7 @@ namespace GhostManager_HaleyPhillips
 
         private bool CheckTimerToAllowGhost()
         {
-            if (limitGhostRate > 0)
+            if (limitGhostRate > 1)
             {
                 if ((limitGhostRateMilisecondsTimer > 0) || (Ghosts.Count >= MaxGhosts))
                 {
@@ -46,7 +47,7 @@ namespace GhostManager_HaleyPhillips
         {
             //If ghost rate is limited use timer 0 means unlimited
             if (limitGhostRateMilisecondsTimer > 0)
-                this.limitGhostRateMilisecondsTimer -= gameTime.ElapsedGameTime.Milliseconds;
+                limitGhostRateMilisecondsTimer -= gameTime.ElapsedGameTime.Milliseconds;
             base.Update(gameTime);
         }
     }
