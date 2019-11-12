@@ -22,7 +22,7 @@ namespace GhostManager_HaleyPhillips
 
         public Ghost(Game game) : base(game)
         {
-            if (String.IsNullOrEmpty(GhostTexture))
+            if (string.IsNullOrEmpty(GhostTexture))
             {
                 GhostTexture = "PurpleGhost";
             }

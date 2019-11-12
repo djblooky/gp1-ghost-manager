@@ -20,7 +20,6 @@ namespace GhostManager_HaleyPhillips
         public GhostSpawnerLimit(Game game) : base(game) {
 
             MaxGhosts = 5;
-            limitGhostRate = 10;
         }
 
         public override Ghost spawnGhost(Ghost ghost)

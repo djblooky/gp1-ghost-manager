@@ -58,7 +58,7 @@ namespace GhostManager_HaleyPhillips
                 Exit();
 
             // TODO: Add your update logic here
-            //console.Log("mouseSpawnCount", mouseSpawn.Ghosts.Count.ToString());
+            console.Log("mouseSpawnCount", mouseSpawn.Ghosts.Count.ToString());
 
             base.Update(gameTime);
         }
