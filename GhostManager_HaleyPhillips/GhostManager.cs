@@ -1,18 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GhostManager_HaleyPhillips
 {
     public interface IGhostManager
     {
         List<Ghost> Ghosts { get; set; }
-        Ghost ghost();
-        Ghost ghost(Ghost g);
+        Ghost spawnGhost();
+        Ghost spawnGhost(Ghost g);
         string GhostTexture { get; set; }
     }
 
@@ -32,14 +28,22 @@ namespace GhostManager_HaleyPhillips
             ghostsToRemove = new List<Ghost>();
         }
 
-        public Ghost ghost()
+        public virtual Ghost spawnGhost()
         {
-           
+            return spawnGhost(new Ghost(Game)); //spawn a new ghost
         }
 
-        public Ghost ghost(Ghost g)
+        public virtual Ghost spawnGhost(Ghost g)
         {
-            
+            this.g = g; //set default ghost
+            if (!string.IsNullOrEmpty(GhostTexture)) //make sure texture is set
+            {
+                g.GhostTexture = GhostTexture;
+            }
+
+            g.Initialize();
+            addGhost(g);
+            return g;
         }
 
         protected virtual void addGhost(Ghost g)
@@ -71,7 +75,7 @@ namespace GhostManager_HaleyPhillips
             //Remove ghosts that are not enalbled anymore
             foreach (Ghost s in ghostsToRemove)
             {
-                this.removeGhost(s);
+                removeGhost(s);
             }
             base.Update(gameTime);
         }

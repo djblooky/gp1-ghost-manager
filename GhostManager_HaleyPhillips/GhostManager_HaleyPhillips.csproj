@@ -41,9 +41,11 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="GhostSpawnerLimit.cs" />
     <Compile Include="Ghost.cs" />
     <Compile Include="GhostManager.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="MouseSpawnGhost.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
