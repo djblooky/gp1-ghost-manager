@@ -9,6 +9,7 @@ namespace GhostManager_HaleyPhillips
         InputHandler input;
         float mouseX, mouseY;
 
+
         public MouseSpawnGhost(Game game) : base(game)
         {
             input = (InputHandler)Game.Services.GetService<IInputHandler>();
@@ -48,6 +49,7 @@ namespace GhostManager_HaleyPhillips
             g.Speed = 300;
             return g;
         }
+
 
     }
 }

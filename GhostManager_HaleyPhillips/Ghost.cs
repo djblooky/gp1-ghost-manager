@@ -23,9 +23,19 @@ namespace GhostManager_HaleyPhillips
         public Ghost(Game game) : base(game)
         {
             if (string.IsNullOrEmpty(GhostTexture))
+                GhostTexture = "PurpleGhost";
+            LoadContent();
+        }
+
+        public Ghost(Game game, Vector2 Location, Vector2 Direction) : base(game)
+        {
+            if (string.IsNullOrEmpty(GhostTexture))
             {
                 GhostTexture = "PurpleGhost";
             }
+
+            this.Location = Location;
+            this.Direction = Direction;
         }
 
         protected override void LoadContent()
