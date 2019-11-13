@@ -87,6 +87,7 @@ namespace GhostManager_HaleyPhillips
             {
                 if (g.Enabled)
                 {
+                    UpdateCoillision(g);
                     g.Update(gameTime); //Only update enabled ghosts
                 }
                 else //If the ghost is not enabled 
@@ -96,17 +97,31 @@ namespace GhostManager_HaleyPhillips
             }
 
             //Remove ghosts that are not enalbled anymore
-            foreach (Ghost s in ghostsToRemove)
+            foreach (Ghost g in ghostsToRemove)
             {
-                removeGhost(s);
+                removeGhost(g);
             }
             base.Update(gameTime);
+        }
+
+        void UpdateCoillision(Ghost g)
+        {
+            foreach (Ghost g2 in ghosts)
+            {
+                if (g.LocationRect.Intersects(g2.LocationRect)) //if collision
+                {
+                    if (g == g2)
+                        break;
+                    g.Direction = GetRandomDirection(); //change direction
+                }
+            }
+                
         }
 
 
         public void Draw(SpriteBatch sb)
         {
-            foreach (var g in ghosts) //draw each ghost
+            foreach (Ghost g in ghosts) //draw each ghost
             {
                  g.Draw(sb);
             }

@@ -60,5 +60,6 @@ namespace GhostManager_HaleyPhillips
 
             base.Update(gameTime);
         }
+
     }
 }
